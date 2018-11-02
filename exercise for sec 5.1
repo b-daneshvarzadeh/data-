@@ -1,0 +1,127 @@
+#sec5.1
+*page rank*: Mr,( M^2)r,(M^3)r,...,(M^n)r----> ?
+r=[r_1,r_2,r_3]^t  
+
+    --------------
+M =| 1/3, 1/2, 0  | 
+   | 1/3, 0, 1/2  |
+   | 1/3, 1/2, 1/2|
+   | -------------|             
+   
+  r_1 +r_2 +r_3 =1 ----->   r_1 =1/3, r_2 =1/3, r_3 =1/3
+  
+   --------------    ---     ---------                  -----
+  | 1/3, 1/2, 0  |  |1/3  |    |1/9 +1/6 |                |0    |  
+  | 1/3, 0, 1/2  |  |1/3  |  = |1/9 +1/6 |     ,M^n ----> |1/2  |    that this belong to vertex of C,becausec it is a dead-end.
+  | 1/3, 1/2, 1/2|  |1/3  |    |1/9 +1/6 |                |1/2  |
+   --------------    -----      ---------                  -----
+--------------------------------------------------------------------------------------------------------------------------------------
+5-1-2
+
+A =bM +(1-b)[1/N] ,  b =.8    r =Ar
+     ------------              ---              ------------         -------------
+M =|1/3, 1/2, 0  |            |1/3|            |1/3, 1/2 , 0  |     |1/3, 1/3, 1/3|
+   |1/3, 0, 1/2  |    [1/N] = |1/3|      A =.8 |1/3, 0 1/2 +.2|  +.2|1/3, 1/3, 1/3|     page ranke =Ar, (A^2)r, ...,(A^n)r.....> ?
+   |1/3, 1/2, 1/2|            |1/3|            |1/3, 1/2 1/2  |     |1/3, 1/3, 1/3|
+    --------------             ---               ------------         ------------
+    
+   ------------------------------------------------------------------------------------------------------------------------------------
+   5.1.3: this graph contain of a dead-end .we call it X. for detecting of page rank we use of the following formul.
+   
+                                                                     A =b M +(1 -b)[1/N]
+                                   -------------------                                       ----------------------
+                                   |0, 1/4, 1/4, 1/3, 0|                                    |1/5, 1/5, 1/5, 1/5,1/5 |
+                                M =|1/4, 0, 1/4, 1/3, 0|                                    |1/5, 1/5, 1/5, 1/5, 1/5|
+                                   |1/4, 1/4, 0, 1/3, 0|        , b =.85      A =.85 M +(.5)|1/5, 1/5, 1/5, 1/5, 1/5|
+                                   |1/4, 1/4, 1/4, 0, 0|                                    |1/5, 1/5, 1/5, 1/5, 1/5|
+                                   |1/4, 1/4, 1/4, 0, 0|                                    |1/5, 1/5, 1/5, 1/5, 1/5|
+                                    ------------------                                       -----------------------
+                                    
+                                    
+                   Ar,(A^2)r, ....., (A^n)r.......> ?
+   ------------------------------------------------------------------------------------------------------------------------------
+            | 0, 1/2, 1, 0  |       
+5.15     M =|1/3, 0, 0, 1/2 |                                                             ---------
+            | 1/3, 0, 0, 1/2|      , r_1 +r_2 +r_3 r_4 =1 , r_1, r_2, r_3, r_4 =1/4   Mr=|1/8 +1/4 |
+            | 1/3, 1/2, 0, 0|                                                            |1/12 +1/8|    
+                                                                                         |1/12 +1/8|
+                                                                                         |1/12 +1/8|
+                                                                                          ---------
+ 
+ the second, third  andfurth rows are equal.now suppose that this is true for n =k.so the second, third and fourth rows in(M^K)r
+ are equal.now proof this for n =k +1.
+                         ---    -----------------
+                        |z_1|   |1/2 z_1 +z_2    |
+    (M^k+1) =M(M^K)r = M|z_2|  =|1/3 z_1 +1/2 z_2|
+                        |z_2|   |1/3 z_1 +1/2 z_2|       so this is true .
+                        |z_2|   |1/3 z_1 +1/2 z_2|
+                         ---     -----------------
+ ============================================================================================================================
+ 5.1.6
+ supose we have K vertexes. kth vertex is dead-end,so we delete it. now k-1th vertex is dead-end,and so delete itand continue this
+ s way
+ so that find the first vertex. page ranke of this vertex is equal 1. now we connect the second vertex to the graph.
+ page ranke of this vertex is 1/2. becouse the first vertex linke to it the number of out-link is 2.
+ now we consider the third  vertes. the page ranke of this vertex is page ranke v_2 *1/out-link of v_2 =1/2 * 1 =1/2.
+ so page ranke of Kth vertex is equal to 1/2 *1/ (out-links of v_k-2) =1/2.
+ =============================================================================================================================
+ 5.1.7
+ we delete vertexes which are dead-ens in n-th level.so all of the vertex in this level deleted.now consider the vertexes of 
+ (n-1th) level. these are dead-end too.and we continue to level 2  in this level we have two dead-end vertex.
+ delete these.page rank of this vertex is equal to 1. now we add the vertexes of level 2. the page ranke of each of
+ these vertex is equal to:
+                           page ranke of v_0 *1/(out-link of v_0) =1* 1/3 =1/3
+                           
+then we add the vertex of 3th level.in this level added 4 vertexes v_3 , v_4 , v_5 , v_6.
+page ranke of v_i, 3<i > 6, is :
+
+                                page ranke v_1 *1/(out-link v_3) =1/3 *1/2 =1/6
+                                
+in the K-th level the number of added vertexes is :
+                                                    2^k =2*(the number of vertexes in (k-1)-th)
+                                                    
+in the end level the page rank of each vertex is:
+                                                 page rtank of vertex in (k-1-th)level *1/number of out-link
+                                                 =page ranke of vertex in (k-1th)level *1/2
+   because the page ranke of vertexes in k-1th level is equal and the out-links is equal too.
+                                                      
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+                                    
+                                   
+                                   
